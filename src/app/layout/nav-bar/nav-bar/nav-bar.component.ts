@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-
-import { Champions } from './../../../models/Champions';
-import { LeagueOfLegendsService } from './../../../shared/LeagueOfLegends/league-of-legends.service';
+import { LeagueOfLegendsService } from '../../../shared/LeagueOfLegends/league-of-legends.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,24 +8,19 @@ import { LeagueOfLegendsService } from './../../../shared/LeagueOfLegends/league
 })
 export class NavBarComponent implements OnInit, AfterViewInit {
   @ViewChild('searchItem') searchNavBar?: any;
-  public resultChampions: any;
-  public champions!: Champions;
-  private championName!: string;
-
-
-  public campeao: any;
+  private _championName!: string;
   constructor(private _leagueOfLegendsService: LeagueOfLegendsService) {}
   ngOnInit(): void {}
   ngAfterViewInit(): void {}
 
   onSearchCharacter() {
     this.getChampions();
-    LeagueOfLegendsService.championName?.emit(this.championName);
     this.onClear();
+    LeagueOfLegendsService.championName?.emit(this._championName);
   }
   getChampions() {
-    this.championName = this.searchNavBar.nativeElement.value;
-    this.campeao = this._leagueOfLegendsService.getChampions(this.championName);
+    this._championName = this.searchNavBar.nativeElement.value;
+    this._leagueOfLegendsService.getChampions(this._championName);
   }
   onClear() {
     let searchBar = this.searchNavBar.nativeElement.value;

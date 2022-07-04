@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { LeagueOfLegendsService } from './../../shared/LeagueOfLegends/league-of-legends.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,17 +12,16 @@ export class HomeComponent implements OnInit {
   constructor(private _leagueOfLegendsService: LeagueOfLegendsService) {}
 
   ngOnInit() {
-    this.getInformationChampions();
+    this.getChampionInformation();
   }
 
-  getInformationChampions() {
+  getChampionInformation() {
     if (this.championName == undefined || this.championName == '') {
       this.getChampionName();
     } else {
       this._leagueOfLegendsService.getChampions(this.championName);
     }
   }
-
   getChampionName() {
     LeagueOfLegendsService.championName?.subscribe(
       data => this.championName = data

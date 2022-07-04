@@ -5,9 +5,7 @@ import { LeagueOfLegendsService } from './LeagueOfLegends/league-of-legends.serv
 
 
 @NgModule({
-  declarations: [
-
-  ],
+  declarations: [],
   imports: [
     CommonModule
   ],
