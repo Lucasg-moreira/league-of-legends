@@ -1,7 +1,5 @@
-import { map } from 'rxjs';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { Champions } from 'src/app/models/Champions';
 import { LeagueOfLegendsService } from './../../shared/LeagueOfLegends/league-of-legends.service';
 
 @Component({
