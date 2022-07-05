@@ -4,9 +4,8 @@ import { LeagueOfLegendsService } from './../shared/LeagueOfLegends/league-of-le
 import { HomeComponent } from './home/home.component';
 import { LayoutModule } from './../layout/layout.module';
 import { SharedModule } from './../shared/shared.module';
-
 import { PagesRoutingModule } from './pages-routing.module';
-
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,8 @@ import { PagesRoutingModule } from './pages-routing.module';
     CommonModule,
     PagesRoutingModule,
     SharedModule,
-    LayoutModule
+    LayoutModule,
+    MatButtonModule
   ],
   exports: [
     HomeComponent

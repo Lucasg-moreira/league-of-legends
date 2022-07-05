@@ -24,23 +24,28 @@
           <a class="nav-link" href="#">Link</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            matInput
-            #searchItem
-          />
-          <button
-            class="btn btn-outline-success"
-            type="button"
-            (click)="onSearchCharacter()">
-            Search
-          </button>
+      <form class="d-flex">
+        <ng-autocomplete
+          #searchItem
+          [searchKeyword]="championKeyword"
+          [data]="listOfAllChampions"
+          [itemTemplate]="itemTemplate"
+          [notFoundTemplate]="notFoundTemplate"
+        ></ng-autocomplete>
+        <ng-template #itemTemplate let-item>
+          <a [innerHTML]="item.name"></a>
+        </ng-template>
+        <ng-template #notFoundTemplate let-notFound>
+          <div>Não foi encontrado! :(</div>
+        </ng-template>
+        <button
+          class="btn btn-outline-success"
+          type="button"
+          (click)="onSearchCharacter()"
+        >
+          Search
+        </button>
       </form>
     </div>
   </div>
 </nav>
-

@@ -1,9 +1,8 @@
-import { PagesModule } from './../pages/pages.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar/nav-bar.component';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 
 @NgModule({
@@ -12,8 +11,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
   ],
   imports: [
     CommonModule,
-    MatAutocompleteModule,
-  ],
+    AutocompleteLibModule
+    ],
   exports: [
     NavBarComponent
   ]
