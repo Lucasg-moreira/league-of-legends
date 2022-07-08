@@ -1,19 +1,19 @@
 <app-nav-bar></app-nav-bar>
-<!-- <div class="container">
+ <div class="container">
   <div class="col-md-12">
-    <div class="row">
-      <div class="col-md-12 p-5" >
-        <div *ngIf="champion != undefined" style="width: 600px; height: 400px;"><img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/{{champion.id}}_{{num}}.jpg" height="100%" width="100%" alt="image do personagem selecionado">
-        </div>
-        <div class="mt-3">
-          <button mat-fab color="primary" (click)="nextSplashImage()"> > </button>
-          <button mat-fab color="blue" (click)="previousSplashImage()"> < </button>
-        </div>
-      </div>
-      <div class="col-md-6 p-5">
-        <div style="width: 300px; height: 300px;">{{champion.id}}</div>
+    <div class="row" *ngIf="selectedChampion == undefined || ''">
+      <div class="col-md-8">
+        <h4>Selecione um campeão!</h4>
       </div>
     </div>
-    <button (click)="getChampionInformation()">testando</button>
+    <div class="row" *ngIf="selectedChampion != undefined">
+      <div class="col-md-12 p-5" >
+        <div style="position: absolute; top: 4.30em; left: 0.1em; width: 800px;">
+          <img height="100%" width="100%" src="assets\img\champion\splash\{{champion.id}}_0.jpg">
+        </div>
+      </div>
+    </div>
   </div>
-</div> -->
+</div>
+
+

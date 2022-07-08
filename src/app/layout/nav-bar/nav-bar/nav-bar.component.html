@@ -33,6 +33,7 @@
           [data]="listOfAllChampions"
           [itemTemplate]="itemTemplate"
           [notFoundTemplate]="notFoundTemplate"
+          (selected)="onSelectedChampionAutoComplete($event)"
         ></ng-autocomplete>
         <ng-template #itemTemplate let-item>
           <a [innerHTML]="item.name"></a>

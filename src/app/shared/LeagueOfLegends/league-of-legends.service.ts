@@ -10,7 +10,7 @@ export class LeagueOfLegendsService {
   private readonly API_URL = environment.API_URL;
   private readonly API_SPLASH_ART = environment.SPLASH_URL;
   private readonly API_ALL_CHAMPIONS = environment.ALL_CHAMPIONS_URL;
-  static championName? = new EventEmitter<string>();
+  public selectedChampion: any = new EventEmitter<any>();
 
   constructor(private http: HttpClient) { }
 
@@ -19,12 +19,8 @@ export class LeagueOfLegendsService {
   }
   getAllChampions() {
     return this.http.get<any>(`${this.API_ALL_CHAMPIONS}`)
-
   }
-  getImageChampions(name: string)  {
-    return this.http.get<any>(`${this.API_SPLASH_ART}/${name}_0.jpg`).pipe(map(data => {
-      console.log(data);
-      return data;
-    }))
+  getImageChampions(name: string) {
+    return this.http.get<any>(`${this.API_SPLASH_ART}/${name}_0.jpg`)
   }
 }

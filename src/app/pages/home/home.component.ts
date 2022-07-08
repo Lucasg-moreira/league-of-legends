@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Champions } from 'src/app/models/Champions';
+import { environment } from 'src/environments/environment.prod';
 
 import { LeagueOfLegendsService } from './../../shared/LeagueOfLegends/league-of-legends.service';
 @Component({
@@ -8,47 +9,43 @@ import { LeagueOfLegendsService } from './../../shared/LeagueOfLegends/league-of
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  private championName: string = '';
-  public num:number = 0;
+  public selectedChampion: any;
   public champion: Champions = new Champions();
+  public championPicture = environment.SPLASH_URL;
+  picture: any;
+  public num: number = 0;
   constructor(private _leagueOfLegendsService: LeagueOfLegendsService) {}
 
   ngOnInit() {
-    this.getChampionInformation();
+    this.getSelectedChampion();
   }
-
-  getChampionInformation() {
-    if (this.championName == undefined || this.championName == '') {
-      this.getChampionName();
-    } else {
-      this._leagueOfLegendsService
-        .getChampionsByName(this.championName)
-        .subscribe((champion) => {
-          this.champion.id = champion.data[this.championName].id
-          this.champion.textTitle = champion.data[this.championName].title
-        });
-        this.getChampionPicture();
-    }
+  getSelectedChampion() {
+    this._leagueOfLegendsService.selectedChampion.subscribe((data: any) => {
+      this.selectedChampion = data;
+      this.champion.id = data.id;
+      this.champion.fullPicture = data.image.full;
+      this.champion.name = data.name;
+      this.champion.textTitle = data.title;
+      this.getChampionByName();
+    });
   }
-  getChampionName() {
-    LeagueOfLegendsService.championName?.subscribe(
-      (data) => (this.championName = data)
-    );
+  nextSplashImage() {
+    this.num++;
+    console.log(this.num);
   }
-  getChampionPicture() {
-    this._leagueOfLegendsService.getImageChampions(this.championName).subscribe(data => this.champion.fullPicture = data)
-  }
-
-  nextSplashImage()  {
-    this.num++
-    console.log(this.num)
-  }
-
   previousSplashImage() {
-    if(this.num <= 0) {
+    if (this.num <= 0) {
       this.num = 0;
     } else {
-      this.num--
-    }console.log(this.num)
+      this.num--;
+    }
+    console.log(this.num);
+  }
+  getChampionByName() {
+    this._leagueOfLegendsService
+      .getChampionsByName(this.champion.id)
+      .subscribe((data) => {
+        this.picture = data.data[this.champion.id].image.full;
+      });
   }
 }
