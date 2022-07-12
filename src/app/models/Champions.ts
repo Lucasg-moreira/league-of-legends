@@ -1,6 +1,9 @@
 export class Champions {
-  id: string = ''
-  fullPicture: any;
-  textTitle: string = ''
-  name: string = ''
+  id: string = '';
+  textTitle: string = '';
+  name: string = '';
+  blurb: string = '';
+  skins: any[] = [];
+  lore: string = '';
+  tags: string = '';
 }
