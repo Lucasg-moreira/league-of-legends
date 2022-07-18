@@ -1,9 +1,9 @@
 <nav
   class="navbar navbar-expand-lg navbar-dark"
-  style="background-color: #401916"
+  style="background-color: #191726; border-bottom: 1px solid rgba(0, 0, 0, 0.176);"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">League of Legends</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
@@ -26,13 +26,13 @@
       </ul>
       <form class="d-flex">
         <ng-autocomplete
-          class="search"
+          class="search ng-autocomplete"
           #searchItem
-          matInput
           [searchKeyword]="championKeyword"
           [data]="listOfAllChampions"
           [itemTemplate]="itemTemplate"
           [notFoundTemplate]="notFoundTemplate"
+          (inputCleared)="onClear()"
           (selected)="onSelectedChampionAutoComplete($event)"
         ></ng-autocomplete>
         <ng-template #itemTemplate let-item>
@@ -42,7 +42,7 @@
           <div>Não foi encontrado! :(</div>
         </ng-template>
         <button
-          class="btn btn-outline-success"
+          mat-button
           type="button"
           (click)="onSearchCharacter()"
         >

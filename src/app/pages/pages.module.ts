@@ -1,11 +1,16 @@
+import { ComponentsModule } from './../components/components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LeagueOfLegendsService } from './../shared/LeagueOfLegends/league-of-legends.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatIconModule } from '@angular/material/icon'
+
+
 import { HomeComponent } from './home/home.component';
 import { LayoutModule } from './../layout/layout.module';
 import { SharedModule } from './../shared/shared.module';
+import { LeagueOfLegendsService } from './../shared/LeagueOfLegends/league-of-legends.service';
 import { PagesRoutingModule } from './pages-routing.module';
-import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,10 @@ import { MatButtonModule } from '@angular/material/button';
     PagesRoutingModule,
     SharedModule,
     LayoutModule,
-    MatButtonModule
+    MatButtonModule,
+    ComponentsModule,
+    MatDialogModule,
+    MatIconModule
   ],
   exports: [
     HomeComponent

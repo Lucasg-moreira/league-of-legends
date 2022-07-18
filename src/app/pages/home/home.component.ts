@@ -1,40 +1,36 @@
-import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Champions } from 'src/app/models/Champions';
-import { environment } from 'src/environments/environment.prod';
+import { Component, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ShowLoreComponent } from 'src/app/components/show-lore/show-lore.component';
 
+import { Champions } from 'src/app/models/Champions';
 import { LeagueOfLegendsService } from './../../shared/LeagueOfLegends/league-of-legends.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
-  @ViewChild('img') img!: HTMLImageElement;
-  public linkUrl = new Image();
-  public selectedChampion: any;
-  public picture?: string;
+export class HomeComponent {
   public champion: Champions = new Champions();
-  public championPicture = environment.SPLASH_URL;
-  public num: number = 0;
-  constructor(private _leagueOfLegendsService: LeagueOfLegendsService) {
+  public index: number = 1;
+  public splashArt: number = 0;
+  constructor(private _leagueOfLegendsService: LeagueOfLegendsService,
+    private _dialog: MatDialog,
+    ) {
     this.getSelectedChampion();
   }
-  ngOnInit() {}
   getSelectedChampion() {
     this._leagueOfLegendsService.selectedChampion.subscribe((data: any) => {
-      this.selectedChampion = data;
       this.addInformations(data);
       this.getChampionByName();
+      this.reset();
     });
   }
   getChampionByName() {
     this._leagueOfLegendsService
       .getChampionsByName(this.champion.id)
       .subscribe((data) => {
-        this.picture = data.data[this.champion.id].image.full;
         this.champion.skins = data.data[this.champion.id].skins;
-
+        this.champion.lore = data.data[this.champion.id].lore;
       });
   }
   addInformations(data: any) {
@@ -45,5 +41,35 @@ export class HomeComponent implements OnInit {
     this.champion.lore = data.lore;
     this.champion.skins = data.skins;
     this.champion.tags = data.tags;
+  }
+  next() {
+    if (this.index >= this.champion.skins.length) {
+      this.index = 1;
+      this.splashArt = 0;
+    } else {
+      let arr = this.champion.skins[this.index].num;
+      this.index++;
+      this.splashArt = arr;
+    }
+  }
+  previous() {
+    this.index--;
+    if(this.index < 0) {
+      this.index = 1;
+      this.splashArt = 0;
+    }else {
+      this.splashArt = this.champion.skins[this.index].num;
+    }
+  }
+  reset() {
+    this.index = 1;
+    this.splashArt = 0;
+  }
+  showChampionLore()  {
+    let dialogRef = this._dialog.open(ShowLoreComponent, {
+      height: '300px',
+      width: '600px',
+      data: this.champion
+    });
   }
 }

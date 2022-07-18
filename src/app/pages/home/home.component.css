@@ -1,3 +1,25 @@
-* {
+
+.description {
+  line-height: 2.5em;
+  font-size: 16px;
+  margin-top: 1em;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px;
   color: white;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+h4 {
+  font-size: large;
+}
+
+.button-prev {
+  margin-left: 36em; background-color: transparent;
+}
+
+.button-next {
+  margin-left: -7em; background-color: transparent;
 }

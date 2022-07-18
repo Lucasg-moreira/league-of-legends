@@ -10,10 +10,11 @@ export class LeagueOfLegendsService {
   private readonly API_URL = environment.API_URL;
   private readonly API_SPLASH_ART = environment.SPLASH_URL;
   private readonly API_ALL_CHAMPIONS = environment.ALL_CHAMPIONS_URL;
+  private readonly API_MINIATURE = environment.MINIATURE_URL;
+
   public selectedChampion: any = new EventEmitter<any>();
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {}
   getChampionsByName(name: string) {
     return this.http.get<any>(`${this.API_URL}/champion/${name}.json`)
   }
@@ -22,5 +23,8 @@ export class LeagueOfLegendsService {
   }
   getImageChampions(name: string) {
     return this.http.get<any>(`${this.API_SPLASH_ART}/${name}_0.jpg`)
+  }
+  getMiniatureChampion(name: string) {
+    return this.http.get<any>(`${this.API_MINIATURE}/${name}.png`)
   }
 }

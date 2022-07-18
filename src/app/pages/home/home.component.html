@@ -1,24 +1,48 @@
-<app-nav-bar></app-nav-bar>
- <div class="container">
-  <div class="col-md-12">
-    <div class="row" *ngIf="selectedChampion == undefined || ''">
-      <div class="col-md-8">
-        <h4>Selecione um campeão!</h4>
-      </div>
-    </div>
-    <div class="row" *ngIf="selectedChampion != undefined">
-      <div class="col-md-6 p-5" >
-        <div style="position: absolute; top: 5.30em; left: 0.1em; width: 800px;">
-          <img height="100%" width="100%" #img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/{{champion.id}}_0.jpg">
-        </div>
-      </div>
-      <div class="col-md-6 p-5">
-        <h1>{{champion.name}}</h1>
-        <p>{{champion.textTitle}}</p>
-        <p>{{champion.blurb}}</p>
+<div class="row" *ngIf="champion.name ===  '' ">
+  <div class="container">
+    <div class="col-md-12">
+      <div style="text-align: center; margin-top: 4em; color: white;">
+        <h4>Nenhum campeão selecionado.</h4>
       </div>
     </div>
   </div>
 </div>
-
+<div class="row" *ngIf="champion.name !== '' ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div
+          style="
+            position: absolute;
+            top: 5em;
+            left: 0.5em;
+            width: 700px;
+            height: 600px;
+          "
+        >
+          <img
+            Height="100%"
+            Width="100%"
+            #img
+            src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/{{
+              champion.id
+            }}_{{splashArt}}.jpg"
+            class="img-fluid rounded"
+          />
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 description p-5">
+        <h1>{{ champion.name }}</h1>
+        <h4 style="color: rgb(128, 128, 128);" class="muted">{{ champion.tags }}</h4>
+        <h4>{{ champion.textTitle }}</h4>
+        <p>{{ champion.blurb }}</p>
+        <button mat-button (click)="showChampionLore()">Show more...</button>
+      </div>
+    </div>
+  </div>
+    <div class="col-md-8" style="position: absolute; top: 22.5em;">
+      <button class="button-next col-md-1 " mat-raised-button  (click)="previous()"> <mat-icon>chevron_left</mat-icon> </button>
+      <button class="button-prev col-md-1 " mat-raised-button  (click)="next()"> <mat-icon>chevron_right</mat-icon> </button>
+    </div>
+</div>
 

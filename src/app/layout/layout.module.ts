@@ -4,6 +4,7 @@ import { NavBarComponent } from './nav-bar/nav-bar/nav-bar.component';
 import {MatInputModule} from '@angular/material/input';
 
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
   imports: [
     CommonModule,
     AutocompleteLibModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
     ],
   exports: [
     NavBarComponent

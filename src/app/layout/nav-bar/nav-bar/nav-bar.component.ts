@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { LeagueOfLegendsService } from '../../../shared/LeagueOfLegends/league-of-legends.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { LeagueOfLegendsService } from '../../../shared/LeagueOfLegends/league-o
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css'],
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent {
   @ViewChild('searchItem') searchNavBar?: any;
   private _championSelected: any;
   private _championId: string = '';
@@ -16,12 +16,18 @@ export class NavBarComponent implements OnInit {
 
   constructor(private _leagueOfLegendsService: LeagueOfLegendsService) {
     this.getAllChampions();
+
   }
-  ngOnInit() {}
   onSearchCharacter() {
     let championSelected = this._championSelected[this._championId];
-    this._leagueOfLegendsService.selectedChampion.emit(championSelected);
-    this.onClear();
+    if(this.searchNavBar.query == '' || undefined){
+      championSelected = undefined;
+      this._leagueOfLegendsService.selectedChampion.emit(championSelected);
+
+    }else {
+      this._leagueOfLegendsService.selectedChampion.emit(championSelected);
+      this.onClear();
+    }
   }
   getAllChampions() {
     this._leagueOfLegendsService.getAllChampions().subscribe((data) => {
@@ -34,9 +40,8 @@ export class NavBarComponent implements OnInit {
     this._championId = event.id;
   }
   onClear() {
-    let searchBar = this.searchNavBar.query;
     this._championId = '';
-    if (searchBar != undefined) {
+    if ( this.searchNavBar.query != undefined) {
       this.searchNavBar.query = '';
     }
   }

@@ -100,9 +100,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "wiki-de-jogos-project"
+  "defaultProject": "wiki-de-jogos-project",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
