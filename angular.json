@@ -37,8 +37,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1m",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -55,7 +55,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
+              "buildOptimizer": true,
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
@@ -108,6 +108,16 @@
               "src/**/*.ts",
               "src/**/*.html"
             ]
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "wiki-de-jogos-project:build:production",
+            "firebaseProject": "lol-champions-11b08",
+            "firebaseHostingSite": "lol-champions-11b08"
           }
         }
       }

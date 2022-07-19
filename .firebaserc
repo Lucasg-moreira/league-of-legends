@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "lol-champions-11b08"
+  },
+  "targets": {
+    "lol-champions-11b08": {
+      "hosting": {
+        "wiki-de-jogos-project": [
+          "lol-champions-11b08"
+        ]
+      }
+    }
+  }
+}
